@@ -85,7 +85,7 @@ static int cmd_si(char *args) {
 		cpu_exec(1);
 	else {
 		sscanf(arg, "%d", &n);
-		if(n<=20) {
+		if(n<=1000000) {
 			if(n==-1){
 				cpu_exec(-1);
 				return 0;
