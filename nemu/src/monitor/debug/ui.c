@@ -86,6 +86,10 @@ static int cmd_si(char *args) {
 	else {
 		sscanf(arg, "%d", &n);
 		if(n<=20) {
+			if(n==-1){
+				cpu_exec(-1);
+				return 0;
+			}
 			for(int i = 0; i < n; ++i) {
 				cpu_exec(1);
 			}
