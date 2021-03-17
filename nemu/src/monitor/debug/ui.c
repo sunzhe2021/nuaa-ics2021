@@ -40,6 +40,8 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args);
 
+static int cmd_info(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -49,6 +51,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Go on some steps", cmd_si },
+  { "info", "Print register status", cmd_info },
   /* TODO: Add more commands */
 
 };
@@ -81,12 +84,12 @@ static int cmd_help(char *args) {
 static int cmd_si(char *args) {
 	char *arg = strtok(NULL, " ");
 	int n = 0;
-	if(arg==NULL)
+	if(arg == NULL)
 		cpu_exec(1);
 	else {
 		sscanf(arg, "%d", &n);
-		if(n<=1000000) {
-			if(n==-1){
+		if(n <= 1000000) {
+			if(n == -1){
 				cpu_exec(-1);
 				return 0;
 			}
@@ -97,6 +100,30 @@ static int cmd_si(char *args) {
 		else
 			printf("Input Error");
 	}
+	return 1;
+}
+
+void print_register() {
+	int i = 0, j = 0;
+	for(i = 0; i < 8; i++) {
+		printf("%s  %x\n", regsl[i], cpu.gpr[i]._32);
+	}
+	for(i = 0; i < 8; i++) {
+		printf("%s  %x\n", regsw[i], cpu.gpr[i]._16);
+	}
+	for(i = 0; i < 8; i++) {
+		for(j = 0; j < 2; j++) {
+			printf("%s %x\n", regsb[i], cpu.gpr[i]._8[j]);
+		}
+	}
+}
+
+static int cmd_info(char *args) {
+	char *arg = strtok(NULL, " ");
+	if(strcmp(arg,"r") == 0)
+		print_register();
+	else
+		printf("Illegal Input");
 	return 1;
 }
 
