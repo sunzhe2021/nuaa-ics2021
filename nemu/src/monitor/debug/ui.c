@@ -42,6 +42,8 @@ static int cmd_si(char *args);
 
 static int cmd_info(char *args);
 
+static int cmd_x(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -52,6 +54,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Go on some steps", cmd_si },
   { "info", "Print register status", cmd_info },
+  { "x", "Scan memory", cmd_x },
   /* TODO: Add more commands */
 
 };
@@ -124,6 +127,22 @@ static int cmd_info(char *args) {
 		print_register();
 	else
 		printf("Illegal Input");
+	return 1;
+}
+
+static int cmd_x(char *args) {
+	char *arg1 = strtok(NULL, " ");
+	char *arg2 = strtok(NULL, " ");
+	int num, i;
+	vaddr_t addr;
+	sscanf(arg1, "%d", &num);
+	sscanf(arg2, "%x", &addr);
+	printf("0x%x:", addr);
+	for(i = 0; i < num; i++) {
+		printf("%x ", vaddr_read(addr, 4));
+		addr += 4;
+	}
+	printf("\n");
 	return 1;
 }
 
