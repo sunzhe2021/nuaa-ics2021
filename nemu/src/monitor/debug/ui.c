@@ -141,6 +141,7 @@ static int cmd_x(char *args) {
 	for(i = 0; i < num; i++) {
 		printf("0x00%x ", addr);
 		printf("0x%08x ", vaddr_read(addr, 4));
+		printf(" ... ");
 		addr += 4;
 		printf("\n");
 	}
