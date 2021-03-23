@@ -140,11 +140,11 @@ static int cmd_x(char *args) {
 	printf("Address    Dword block ... Byte Sequence\n");
 	for(i = 0; i < num; i++) {
 		uint32_t data = vaddr_read(addr + i * 4, 4);
-		printf("0x%08x ", addr);
+		printf("0x00%x ", addr);
 		printf("0x%08x ", vaddr_read(addr, 4));
 		printf(" ... ");
 		for( int j = 0; j < 4; ++j ) {
-			printf("0x%02x ", data & 0xff);
+			printf("%02x ", data & 0xff);
 			data = data >> 8;
 		}
 		addr += 4;
