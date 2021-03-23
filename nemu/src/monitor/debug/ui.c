@@ -145,9 +145,10 @@ static int cmd_x(char *args) {
 		printf(" ... ");
 		for( int j = 0; j < 4; ++j ) {
 			printf("0x%02x ", data & 0xff);
-			data = data >> 2;
+			data = data >> 8;
 		}
 		addr += 4;
+		printf("\n");
 	}
 	return 1;
 }
