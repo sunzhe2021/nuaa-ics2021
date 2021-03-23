@@ -143,6 +143,10 @@ static int cmd_x(char *args) {
 		printf("0x%08x ", vaddr_read(addr, 4));
 		printf(" ... ");
 		addr += 4;
+		for( int j = 0; j < 4; ++j ) {
+			printf("0x%02x ", addr & 0xff);
+			addr = addr >> 8;
+		}
 		printf("\n");
 	}
 	printf("\n");
