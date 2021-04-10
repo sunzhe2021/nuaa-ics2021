@@ -173,8 +173,9 @@ static int cmd_x(char *args) {
 		sscanf(arg2, "%x", &point);
         printf("Address    Dword block ... Byte Sequence\n");
         for(i = 0; i < time; i++) {
-                printf("0x00%x ", point);
-                printf("0x%08x	", vaddr_read(point, 4));
+		uint32_t data = vaddr_read(point, 4);
+                printf("0x00%x     ", point);
+                printf("0x%08x	", data);
         	printf(" ... ");
                 for( j = 1; j <= 4; ++j) {
 			vaddr_t temp = vaddr_read(point, j);
