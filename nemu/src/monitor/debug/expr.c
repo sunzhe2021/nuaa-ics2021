@@ -142,7 +142,7 @@ bool parentheses_check(int m, int n) {
 	return false;
 }
 
-int find_central_op(int m, int n) {
+int find_dominated_op(int m, int n) {
 	int i;
 	int min_status = 10;
 	int oper = m;
@@ -199,7 +199,7 @@ uint32_t eval(int m, int n) {
 		return eval(m+1, n-1);
 	}
 	else {
-		int op = find_central_op(m, n);
+		int op = find_dominated_op(m, n);
 		if(m == op) {
 			uint32_t val = eval(m+1, n);
 			switch(tokens[m].type) {
