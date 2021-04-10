@@ -27,7 +27,7 @@ char* rl_gets() {
   return line_read;
 }
 
-uint32_t expr(char *e, bool *success);
+uint32_t __attribute__((unused)) expr(char *e, bool *success);
 
 static int cmd_c(char *args) {
   cpu_exec(-1);
