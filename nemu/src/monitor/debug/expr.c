@@ -22,7 +22,7 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
-  {" ", TK_NOTYPE, 0},              // spaces
+  {" +", TK_NOTYPE, 0},              // spaces
   {"\\t+", TK_NOTYPE, 0},            // tabs
   {"\\+", '+', 4},                   // plus
   {"==", TK_EQ, 3},                  // equal
