@@ -26,7 +26,7 @@ static struct rule {
   {"\\t+", TK_NOTYPE, 0},            // tabs
   {"\\+", '+', 4},                   // plus
   {"==", TK_EQ, 3},                  // equal
-  {"[0-9]+", TK_TEN, 0},             //decimalism
+  {"\\b[0-9]+\\b", TK_TEN, 0},       //decimalism
   {"0x[0-9a-f]+", TK_SIXTEEN, 0},    //hexadecimal
   {"\\$[a-ehilpx]{2,3}", TK_REG, 0}, //register
   {"\\(", '(', 7},                   //left_bracket
