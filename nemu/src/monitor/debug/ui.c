@@ -27,6 +27,8 @@ char* rl_gets() {
   return line_read;
 }
 
+uint32_t expr(char *e, bool *success);
+
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
@@ -44,6 +46,8 @@ static int cmd_info(char *args);
 
 static int cmd_x(char *args);
 
+static int cmd_p(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -55,6 +59,7 @@ static struct {
   { "si", "Go on some steps", cmd_si },
   { "info", "Print register status", cmd_info },
   { "x", "Scan memory", cmd_x },
+  { "p", "Calculate the expr", cmd_p },
   /* TODO: Add more commands */
 
 };
@@ -149,6 +154,25 @@ static int cmd_x(char *args) {
 		}
 		addr += 4;
 		printf("\n");
+	}
+	return 1;
+}
+
+static int cmd_p(char *args) {
+	char *arg = strtok(NULL, " ");
+	bool flag = true;
+	if(arg == NULL) {
+		printf("Instruction requires experssion.\n");
+	}
+	else {
+		uint32_t value;
+		value = expr(arg, &flag);
+		if(flag) {
+			printf("result:%d\t(0x%x)\n", value, value);
+		}
+		else {
+			printf("make token error!");
+		}
 	}
 	return 1;
 }
