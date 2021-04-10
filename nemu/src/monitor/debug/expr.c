@@ -195,35 +195,39 @@ uint32_t eval(int m, int n) {
 				}
 			}
 		}
-		else if(parentheses_check(m, n) == true) {
-			return eval(m+1, n-1);
-		}
 		else {
-			int op = find_central_op(m, n);
-			if(m == op) {
-				uint32_t val = eval(m+1, n);
-				switch(tokens[m].type) {
-					case '!': return !val;
-					default: return -1;
-				}
-			}
-			uint32_t value1 = eval(m, op - 1);
-			uint32_t value2 = eval(op + 1, n);
-			switch(tokens[op].type) {
-				case '+': return value1 + value2;
-				case '-': return value1 - value2;
-				case '*': return value1 * value2;
-				case '/': return value1 / value2;
-				case TK_EQ: return value1 == value2;
-				case TK_UEQ: return value1 != value2;
-				case '>': return value1 > value2;
-				case '<': return value1 < value2;
-				case GE: return value1 >= value2;
-				case LE: return value1 <= value2;
-				case '&': return value1 && value2;
-				case '|': return value1 || value2;
+			return -1;
+		};
+		return num;
+	}
+	else if(parentheses_check(m, n) == true) {
+		return eval(m+1, n-1);
+	}
+	else {
+		int op = find_central_op(m, n);
+		if(m == op) {
+			uint32_t val = eval(m+1, n);
+			switch(tokens[m].type) {
+				case '!': return !val;
 				default: return -1;
 			}
+		}
+		uint32_t value1 = eval(m, op - 1);
+		uint32_t value2 = eval(op + 1, n);
+		switch(tokens[op].type) {
+			case '+': return value1 + value2;
+			case '-': return value1 - value2;
+			case '*': return value1 * value2;
+			case '/': return value1 / value2;
+			case TK_EQ: return value1 == value2;
+			case TK_UEQ: return value1 != value2;
+			case '>': return value1 > value2;
+			case '<': return value1 < value2;
+			case GE: return value1 >= value2;
+			case LE: return value1 <= value2;
+			case '&': return value1 && value2;
+			case '|': return value1 || value2;
+			default: return -1;
 		}
 	}
 	return 0;
