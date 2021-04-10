@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_TEN, TK_SIXTEEN, TK_REG, GE, LE, TK_EQ, TK_UEQ, POINTER, MINUS
+  TK_NOTYPE = 256, TK_TEN, TK_SIXTEEN, TK_REG, TK_EQ, TK_UEQ, POINTER, MINUS
   /* TODO: Add more token types */
 
 };
@@ -40,8 +40,6 @@ static struct rule {
   {"!", '!', 6},                     //not
   {">", '>', 3},                     //greater
   {"<", '<', 3},                     //lower
-  {">=", GE, 3},                     //greater or equal
-  {"<=", LE, 3},                     //lower or equal  
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -220,8 +218,6 @@ uint32_t eval(int m, int n) {
 			case TK_UEQ: return value1 != value2;
 			case '>': return value1 > value2;
 			case '<': return value1 < value2;
-			case GE: return value1 >= value2;
-			case LE: return value1 <= value2;
 			case '&': return value1 && value2;
 			case '|': return value1 || value2;
 			default: return -1;

@@ -169,7 +169,7 @@ static int cmd_p(char *args) {
 		printf("result:%d\t(0x%x)\n", value, value);
 	}
 	else {
-		printf("make token error!");
+		printf("make token error!\n");
 	}
 	return 1;
 }
