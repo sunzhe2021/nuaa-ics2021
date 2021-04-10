@@ -169,6 +169,7 @@ int find_central_op(int m, int n) {
 }
 
 uint32_t eval(int m, int n) {
+	printf("m: %d, n: %d\n", m, n);
 	if(m > n) {
 		return 0;
 	}
