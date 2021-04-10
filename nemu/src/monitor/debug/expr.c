@@ -200,9 +200,11 @@ uint32_t eval(int m, int n) {
 	}
 	else {
 		int op = find_dominated_op(m, n);
-		if(m == op) {
+		if(m == op || tokens[op].type == POINTER || tokens[op].type ==MINUS || tokens[op].type == '!') {
 			uint32_t val = eval(m+1, n);
 			switch(tokens[m].type) {
+				case POINTER: return vaddr_read(val, 4);
+				case MINUS: return -val;
 				case '!': return !val;
 				default: return -1;
 			}
