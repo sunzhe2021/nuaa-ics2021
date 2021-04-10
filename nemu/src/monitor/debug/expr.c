@@ -84,7 +84,7 @@ static bool make_token(char *e) {
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;
-	char *temp = e + position + 1;
+//	char *temp = e + position + 1;
         int substr_len = pmatch.rm_eo;
 	position += substr_len;
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
@@ -97,18 +97,19 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
 		case TK_NOTYPE: break;
-		case TK_REG: 
+/*		case TK_REG: 
 			tokens[nr_token].type = rules[i].token_type;
 			tokens[nr_token].high_status = rules[i].high_status;
 			strncpy(tokens[nr_token].str,temp,substr_len-1);
 			tokens[nr_token].str[substr_len-1]='\0';
 			nr_token ++;
 			break;
+*/
 	        default:
 			tokens[nr_token].type = rules[i].token_type;
 			tokens[nr_token].high_status = rules[i].high_status;
 			strncpy(tokens[nr_token].str,substr_start,substr_len);
-			tokens[nr_token].str[substr_len]='\0';
+//			tokens[nr_token].str[substr_len]='\0';
 			nr_token ++;
 			break;
         }
