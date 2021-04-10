@@ -133,6 +133,7 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
+/*
 	char *arg1 = strtok(NULL, " ");
 	char *arg2 = strtok(NULL, " ");
 	int num, i;
@@ -153,6 +154,39 @@ static int cmd_x(char *args) {
 		printf("\n");
 	}
 	return 1;
+*/
+	vaddr_t point;
+	int i, j, k, time;
+	k = 0;
+	char *arg1 = strtok(NULL, " ");
+        char *arg2 = strtok(NULL, " ");
+        sscanf(arg1, "%d", &time);
+	if(arg2[0] != '0') {
+		bool flag = true;
+		point = expr(arg2, &flag);
+		if(flag == false) {
+			printf("Fail!\n");
+			return 0;
+		}
+	}
+	else
+		sscanf(arg2, "%x", &point);
+        printf("Address    Dword block ... Byte Sequence\n");
+        for(i = 0; i < time; i++) {
+                printf("%#x	", point);
+                printf("%#x	", vaddr_read(point, 4));
+        	printf(" ... ");
+                for( j = 0; j < 4; j++) {
+			vaddr_t temp = vaddr_read(point, j);
+			int mov = (k << 3);
+			temp = temp >> mov;
+                        printf("%02x ", temp);
+                        k++;
+                }
+                printf("\n");
+		point += 4;
+        }
+        return 1;
 }
 
 static int cmd_p(char *args) {
