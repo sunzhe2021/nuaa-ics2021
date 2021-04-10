@@ -224,14 +224,18 @@ uint32_t eval(int m, int n) {
 				default: return -1;
 			}
 		}
+	}
+	return 0;
 }
 
 
-uint32_t __attribute__((unused)) expr(char *e, bool *success) {
+uint32_t expr(char *e, bool *success) {
 	if (!make_token(e)) {
 		*success = false;
 		return 0;
 	}
+	/* TODO: Insert codes to evaluate the expression. */
+	//TODO();
 	int i;
 	for(i = 0; i < nr_token; i++ ) {
 		if(tokens[i].type == '*' &&( i == 0 || (tokens[i - 1].type != TK_TEN && tokens[i - 1].type != TK_SIXTEEN && tokens[i - 1].type != TK_REG && tokens[i - 1].type != ')'))) {
@@ -246,10 +250,4 @@ uint32_t __attribute__((unused)) expr(char *e, bool *success) {
 	int result;
 	result = eval(0, nr_token - 1);
 	return result;
-}
-
-  /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
-  return 0;
 }

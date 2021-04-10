@@ -161,16 +161,15 @@ static int cmd_p(char *args) {
 	bool flag = true;
 	if(arg == NULL) {
 		printf("Instruction requires experssion.\n");
+		return 0;
+	}
+	uint32_t value;
+	value = expr(arg, &flag);
+	if(flag) {
+		printf("result:%d\t(0x%x)\n", value, value);
 	}
 	else {
-		uint32_t value;
-		value = expr(arg, &flag);
-		if(flag) {
-			printf("result:%d\t(0x%x)\n", value, value);
-		}
-		else {
-			printf("make token error!");
-		}
+		printf("make token error!");
 	}
 	return 1;
 }
