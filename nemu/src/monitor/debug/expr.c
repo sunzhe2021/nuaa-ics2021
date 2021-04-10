@@ -97,19 +97,10 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
 		case TK_NOTYPE: break;
-/*		case TK_REG: 
-			tokens[nr_token].type = rules[i].token_type;
-			tokens[nr_token].high_status = rules[i].high_status;
-			strncpy(tokens[nr_token].str,temp,substr_len-1);
-			tokens[nr_token].str[substr_len-1]='\0';
-			nr_token ++;
-			break;
-*/
 	        default:
 			tokens[nr_token].type = rules[i].token_type;
 			tokens[nr_token].high_status = rules[i].high_status;
 			strncpy(tokens[nr_token].str,substr_start,substr_len);
-//			tokens[nr_token].str[substr_len]='\0';
 			nr_token ++;
 			break;
         }
@@ -121,7 +112,6 @@ static bool make_token(char *e) {
       return false;
     }
   }
-
   return true;
 }
 
