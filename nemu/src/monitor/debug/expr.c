@@ -82,6 +82,7 @@ static bool make_token(char *e) {
   nr_token = 0;
 
   while (e[position] != '\0') {
+	printf("%c ", e[position]);
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
@@ -114,11 +115,9 @@ static bool make_token(char *e) {
 			nr_token ++;
 			break;
         }
-
         break;
       }
     }
-
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
       return false;
@@ -169,7 +168,7 @@ int find_central_op(int m, int n) {
 }
 
 uint32_t eval(int m, int n) {
-	printf("m:%d n:%d", m, n);
+	printf("m:%d n:%d\n", m, n);
 	if(m > n) {
 		return 0;
 	}
