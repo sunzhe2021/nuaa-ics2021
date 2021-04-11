@@ -6,7 +6,10 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-
+int set_watchpoint(char *args);
+bool delete_watchpoint(int NO);
+void list_watchpoint();
+WP *scan_watchpoint();
 void cpu_exec(uint64_t);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
@@ -45,6 +48,11 @@ static int cmd_info(char *args);
 static int cmd_x(char *args);
 
 static int cmd_p(char *args);
+
+static int cmd_w(char *args);
+
+static int cmd_d(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -57,6 +65,8 @@ static struct {
   { "info", "Print register status", cmd_info },
   { "x", "Scan memory", cmd_x },
   { "p", "Calculate the expr", cmd_p },
+  { "w", "set the watchpoint", cmd_w },
+  { "d", "delete the watchpoint", cmd_d },
   /* TODO: Add more commands */
 
 };
@@ -206,6 +216,28 @@ static int cmd_p(char *args) {
 		printf("make token error!\n");
 	}
 	return 1;
+}
+
+static int cmd_w(char *args) {
+	if(args == NULL) {
+		printf("Invalid expression!\n");
+	}
+	else
+		set_watchpoint(args);
+	return 0;
+}
+
+static int cmd_d(char *args) {
+	if(args == NULL)
+		printf("Invalid expression!\n");
+	else {
+		char *arg = strtok(NULL, " ");
+		int i;
+		sscanf(arg, "%d", &i);
+		delete_watchpoint(i);
+		return 0;
+	}
+	return 0;
 }
 
 void ui_mainloop(int is_batch_mode) {
