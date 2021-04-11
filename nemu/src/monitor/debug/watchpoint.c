@@ -73,7 +73,7 @@ int set_watchpoint(char *args) {
 	wp->old_val = val;
 	strcpy(wp->expr, args);
 	if(head == NULL) {
-		wp->NO = 1;
+		wp->NO = 0;
 		head = wp;
 	}
 	else {
