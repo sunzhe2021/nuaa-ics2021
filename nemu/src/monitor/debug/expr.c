@@ -115,7 +115,7 @@ static bool make_token(char *e) {
   return true;
 }
 
-bool parentheses_check(int m, int n) {
+bool check_parentheses(int m, int n) {
 	int i;
 	if(tokens[m].type == '(' && tokens[n].type == ')') {
 		int lp = 0, rp = 0;
@@ -186,7 +186,7 @@ uint32_t eval(int m, int n) {
 		};
 		return num;
 	}
-	else if(parentheses_check(m, n) == true) {
+	else if(check_parentheses(m, n) == true) {
 		return eval(m+1, n-1);
 	}
 	else {
