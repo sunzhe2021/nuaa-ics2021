@@ -131,13 +131,16 @@ WP *scan_watchpoint() {
 		bool success = true;
 		int val = expr(wp->expr, &success);
 		if(val != wp->old_val) {
-			printf("EXPR: %s value has changed!\n", wp->expr);
-			printf("The old value: 0x%08x\t The new value: 0x%08x\n", wp->old_val, val);
+			printf("Hit watchpoint %d at address 0x%8s\n", wp->NO, wp->expr);
+			printf("expr          = %s\n", wp->expr);
+			printf("The old value = 0x%08x\n", wp->old_val);
+			printf("The new value = 0x%08x\n", val);
 			wp->new_val = val;
 			return wp;
 		}
 		wp = wp->next;
 	}
+	printf("program paused\n");
 	return NULL;
 }
 
