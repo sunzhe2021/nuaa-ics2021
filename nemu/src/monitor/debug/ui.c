@@ -135,8 +135,10 @@ void print_register() {
 
 static int cmd_info(char *args) {
 	char *arg = strtok(NULL, " ");
-	if(strcmp(arg,"r") == 0)
+	if(strcmp(arg, "r") == 0)
 		print_register();
+	else if(strcmp(arg, "w") == 0)
+		list_watchpoint();
 	else
 		printf("Illegal Input");
 	return 1;
