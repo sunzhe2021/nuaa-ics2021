@@ -53,6 +53,6 @@ gdb: $(BINARY)
 clean: 
 	rm -rf $(BUILD_DIR)
 count:
-	find . -name *.c -or -name *.h | xargs cat | wc -1
+	find . -name *.c -or -name *.h | xargs cat | wc -l
 countsp:
-	find . -name *.c -or -name *.h -name *.cpp | xargs cat | grep -v ^$$ | wc -1
+	find . -name *.c -or -name *.h -name *.cpp | xargs cat | grep -v ^$$ | wc -l
