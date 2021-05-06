@@ -36,17 +36,17 @@ typedef union {
 	struct{
 		uint32_t CF:1;
 		unsigned :5;
-		uint32_t PF:1;
-		uint32_t :1;
-		uint32_t AF:1;
-		uint32_t :1;
+		//uint32_t PF:1;
+		//uint32_t :1;
+		//uint32_t AF:1;
+		//uint32_t :1;
 		uint32_t ZF:1;
 		uint32_t SF:1;
 		unsigned :1;
-		uint32_t TF:1;
+		//uint32_t TF:1;
 		uint32_t IF:1;
 		unsigned :1;
-		uint32_t DF:1;
+		//uint32_t DF:1;
 		uint32_t OF:1;
 		unsigned :20;
 	};
