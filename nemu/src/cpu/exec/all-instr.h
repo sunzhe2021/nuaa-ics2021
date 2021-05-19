@@ -19,3 +19,4 @@ make_EHelper(lea);
 make_EHelper(and);
 make_EHelper(add);
 make_EHelper(jcc);
+make_EHelper(setcc);
