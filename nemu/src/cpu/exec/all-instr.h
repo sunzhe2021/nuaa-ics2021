@@ -23,3 +23,7 @@ make_EHelper(setcc);
 make_EHelper(leave);
 make_EHelper(movzx);
 make_EHelper(movsx);
+make_EHelper(or);
+make_EHelper(adc);
+make_EHelper(sbb);
+make_EHelper(test);
