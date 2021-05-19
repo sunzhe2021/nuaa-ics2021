@@ -1,5 +1,7 @@
 #include "cpu/exec.h"
-
+#include "common.h"
+#include "device/port-io.h"
+extern void raise_intr(uint8_t NO, vaddr_t ret_addr);
 void diff_test_skip_qemu();
 void diff_test_skip_nemu();
 
