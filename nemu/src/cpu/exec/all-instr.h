@@ -27,7 +27,7 @@ make_EHelper(or);
 make_EHelper(adc);
 make_EHelper(sbb);
 make_EHelper(test);
-make_EHelper(out);
+//make_EHelper(out);
 make_EHelper(inc);
 make_EHelper(dec);
 make_EHelper(call_rm);
