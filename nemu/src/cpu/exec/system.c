@@ -58,7 +58,6 @@ make_EHelper(in) {
 
 make_EHelper(out) {
   pio_write(id_dest->val, id_dest->width, id_src->val);
-  print_asm_template2(out);
 
   print_asm_template2(out);
 
