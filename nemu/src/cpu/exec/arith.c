@@ -38,7 +38,7 @@ make_EHelper(cmp) {
   rtl_set_OF(&t3);
   rtl_update_ZFSF(&t0, 4);
 
-  //print_asm_template2(cmp);
+  print_asm_template2(cmp);
 }
 
 make_EHelper(inc) {
