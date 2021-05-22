@@ -30,39 +30,39 @@ typedef union {
   struct {
  	 rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
  	 vaddr_t eip;
-  };
-  union{
-	uint32_t val;
-	struct{
-		uint32_t CF:1;
-		unsigned :5;
-		//uint32_t PF:1;
-		//uint32_t :1;
-		//uint32_t AF:1;
-		//uint32_t :1;
-		uint32_t ZF:1;
-		uint32_t SF:1;
-		unsigned :1;
-		//uint32_t TF:1;
-		uint32_t IF:1;
-		unsigned :1;
-		//uint32_t DF:1;
-		uint32_t OF:1;
-		unsigned :20;
+  	union{
+		uint32_t val;
+		struct{
+			uint32_t CF:1;
+			unsigned :5;
+			//uint32_t PF:1;
+			//uint32_t :1;
+			//uint32_t AF:1;
+			//uint32_t :1;
+			uint32_t ZF:1;
+			uint32_t SF:1;
+			unsigned :1;
+			//uint32_t TF:1;
+			uint32_t IF:1;
+			unsigned :1;
+			//uint32_t DF:1;
+			uint32_t OF:1;
+			unsigned :20;
+		};
+	  }eflags;
+
+	  struct {
+		uint32_t base;
+		uint16_t limit;
+	  }idtr;
+
+	  CR0 cr0;
+	  CR3 cr3;
+
+	  bool INTR;
+
+	  uint32_t cs;
 	};
-  }eflags;
-
-  struct {
-	uint32_t base;
-	uint16_t limit;
-  }idtr;
-
-  CR0 cr0;
-  CR3 cr3;
-
-  bool INTR;
-
-  uint32_t cs;
 }CPU_state;
 
 extern CPU_state cpu;
