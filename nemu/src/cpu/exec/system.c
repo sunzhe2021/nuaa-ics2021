@@ -28,7 +28,7 @@ make_EHelper(mov_cr2r) {
 }
 
 make_EHelper(int) {
-  TODO();
+  raise_intr(id_dest->val, *eip);
 
   print_asm("int %s", id_dest->str);
 
@@ -57,8 +57,6 @@ make_EHelper(in) {
 }
 
 make_EHelper(out) {
-  t0 = 0;
-  rtl_sr(R_EAX, id_dest->width, &t0);
   pio_write(id_dest->val, id_dest->width, id_src->val);
 
   print_asm_template2(out);
