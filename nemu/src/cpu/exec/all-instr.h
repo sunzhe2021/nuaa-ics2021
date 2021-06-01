@@ -46,3 +46,4 @@ make_EHelper(div);
 make_EHelper(idiv);
 make_EHelper(cltd);
 make_EHelper(iret);
+make_EHelper(in);
