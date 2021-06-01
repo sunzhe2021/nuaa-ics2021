@@ -83,21 +83,12 @@ make_EHelper(not) {
 }
 
 make_EHelper(rol) {
-  rtl_shl(&t0, &id_dest->val, &id_src->val);
-  if(decoding.is_operand_size_16) {
-	t3 = 0;
-	rtl_addi(&t1, &t3, 16);
-	rtl_sub(&t1, &t1, &id_src->val);
-	rtl_shr(&t2, &id_dest->val, &t1);
+  for(t0 = 0; t0 < id_src->val; t0++) {
+	rtl_shri(&t1, &id_dest->val, id_dest->width * 8 - 1);
+	rtl_shli(&t2, &id_dest->val, 1);
+	id_dest->val = t1 + t2;
   }
-  else {
-	t3 = 0;
-	rtl_addi(&t1, &t3, 32);
-	rtl_sub(&t1, &t1, &id_src->val);
-	rtl_shr(&t2, &id_dest->val, &t1);
-  }
-  rtl_or(&t0, &t0, &t2);
-  operand_write(id_dest, &t0);
-  rtl_update_ZFSF(&t0, id_dest->width);
+  rtl_set_CF(&t1);
+  operand_write(id_dest, &id_dest->val);
   print_asm_template2(rol);
 }
