@@ -111,7 +111,7 @@ bool delete_watchpoint(int NO) {
 
 void list_watchpoint() {
 	if(head == NULL) {
-		printf("There is no watchpoint!\n");
+		//printf("There is no watchpoint!\n");
 	}
 	WP *wp;
 	wp = head;
@@ -125,7 +125,7 @@ void list_watchpoint() {
 WP *scan_watchpoint() {
 	WP *wp = head;
 	if(wp == NULL) {
-		printf("There is no watchpoint!\n");
+		//printf("There is no watchpoint!\n");
 	}
 	while(wp != NULL) {
 		bool success = true;
