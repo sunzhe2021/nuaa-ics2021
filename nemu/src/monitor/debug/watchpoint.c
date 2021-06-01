@@ -140,7 +140,7 @@ WP *scan_watchpoint() {
 		}
 		wp = wp->next;
 	}
-	printf("program paused\n");
+	//printf("program paused\n");
 	return NULL;
 }
 
