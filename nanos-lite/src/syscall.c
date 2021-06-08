@@ -33,6 +33,11 @@ static inline uintptr_t sys_brk(uintptr_t new_brk) {
   return 1;
 }
 
+static inline uintptr_t sys_none(_RegSet *r) {
+	SYSCALL_ARG1(r) = 1;
+	return 1;
+}
+
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
