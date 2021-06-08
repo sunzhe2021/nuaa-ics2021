@@ -48,3 +48,4 @@ make_EHelper(cltd);
 make_EHelper(iret);
 make_EHelper(in);
 make_EHelper(cwtl);
+make_EHelper(lidt);
