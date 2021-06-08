@@ -30,7 +30,7 @@ int main() {
 
   init_fs();
 
-  uint32_t entry = loader(NULL, "/navy-apps/tests/dummy/dummy.c");
+  uint32_t entry = loader(NULL, "ramdisk.img");
   ((void (*)(void))entry)();
 
   panic("Should not reach here");
