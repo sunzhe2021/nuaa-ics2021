@@ -38,6 +38,11 @@ static inline uintptr_t sys_none(_RegSet *r) {
 	return 1;
 }
 
+static inline uintptr_t sys_exit8(uintptr_t ex) {
+	_halt(ex);
+	return 1;
+}
+
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
