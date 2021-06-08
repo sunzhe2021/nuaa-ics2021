@@ -30,7 +30,15 @@ int _write(int fd, void *buf, size_t count){
 }
 
 void *_sbrk(intptr_t increment){
-  return (void *)-1;
+  intptr_t old_brk = brk;
+  intptr_t new_brk = old_brk + increment;
+  intptr_t sys = _syscall_(SYS_brk, new_brk, 0, 0);
+  if(sys == 0) {
+	brk = new_brk;
+	return (void *)old_brk;
+  }
+  else
+	return (void *) -1;
 }
 
 int _read(int fd, void *buf, size_t count) {
