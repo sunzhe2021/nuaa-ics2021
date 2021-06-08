@@ -37,12 +37,9 @@ static inline uintptr_t sys_close(uintptr_t fd) {
 }
 
 intptr_t program_brk;
-static inline uintptr_t sys_brk(_RegSet *r) {
-  //program_brk = (intptr_t)new_brk;
-  //return mm_brk((uintptr_t)program_brk);
-  SYSCALL_ARG1(r) = 0;
-  r->eax = 0;
-  return 1;
+static inline uintptr_t sys_brk(uintptr_t new_brk) {
+  program_brk = (intptr_t)new_brk;
+  return mm_brk((uintptr_t)program_brk);
 }
 
 static inline uintptr_t sys_none(_RegSet *r) {
