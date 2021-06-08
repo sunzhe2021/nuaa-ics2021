@@ -30,7 +30,7 @@ int main() {
 
   init_fs();
 
-  uint32_t entry = loader(NULL, "intrid.S");
+  uint32_t entry = loader(NULL, "build");
   ((void (*)(void))entry)();
 
   panic("Should not reach here");
