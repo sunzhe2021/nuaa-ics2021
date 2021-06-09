@@ -30,15 +30,16 @@ int _write(int fd, void *buf, size_t count){
 }
 
 void *_sbrk(intptr_t increment){
-  intptr_t old_brk = brk;
-  intptr_t new_brk = old_brk + increment;
-  intptr_t sys = _syscall_(SYS_brk, new_brk, 0, 0);
-  if(sys == 0) {
-	brk = new_brk;
-	return (void *)old_brk;
+  extern char end;
+  static intptr_t program_break = (intptr_t)&end;
+  intptr_t pre_program_break = program_break;
+  if(_syscall_(SYS_brk, program_break + increment, 0, 0) == 0) {
+	program_break = pre_program_break + increment;
+	return (void *)pre_program_break;
   }
-  else
+  else {
 	return (void *)-1;
+  }
 }
 
 int _read(int fd, void *buf, size_t count) {
