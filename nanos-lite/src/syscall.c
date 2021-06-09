@@ -47,7 +47,7 @@ static inline uintptr_t sys_none(_RegSet *r) {
 	return 1;
 }
 
-static inline uintptr_t sys_exit8(uintptr_t ex) {
+static inline uintptr_t sys_exit(uintptr_t ex) {
 	_halt(ex);
 	return 1;
 }
