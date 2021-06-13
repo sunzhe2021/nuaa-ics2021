@@ -7,7 +7,6 @@ int mm_brk(uint32_t new_brk);
 static inline uintptr_t sys_open(uintptr_t pathname, uintptr_t flags, uintptr_t mode) {
   //TODO();
   return fs_open((const char *)pathname, flags, mode);
-  //return 1;
 }
 
 static inline uintptr_t sys_write(uintptr_t fd, uintptr_t buf, uintptr_t len) {
@@ -26,7 +25,6 @@ static inline uintptr_t sys_write(uintptr_t fd, uintptr_t buf, uintptr_t len) {
 
 static inline uintptr_t sys_read(uintptr_t fd, uintptr_t buf, uintptr_t len) {
   //TODO();
-  //return 1;
   return fs_read(fd, (void *)buf, len);
 }
 
@@ -36,7 +34,6 @@ static inline uintptr_t sys_lseek(uintptr_t fd, uintptr_t offset, uintptr_t when
 
 static inline uintptr_t sys_close(uintptr_t fd) {
   //TODO();
-  //return 1;
   return fs_close(fd);
 }
 
