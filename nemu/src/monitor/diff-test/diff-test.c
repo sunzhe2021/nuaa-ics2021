@@ -116,6 +116,7 @@ void init_difftest(void) {
       gdb_si();
     }
   }
+
 }
 
 void init_qemu_reg() {
