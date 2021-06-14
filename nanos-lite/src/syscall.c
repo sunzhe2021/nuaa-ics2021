@@ -10,7 +10,7 @@ static inline uintptr_t sys_open(uintptr_t pathname, uintptr_t flags, uintptr_t 
 }
 
 static inline uintptr_t sys_write(uintptr_t fd, uintptr_t buf, uintptr_t len) {
-  //Log("SYS_write");
+  Log("SYS_write");
   char *p = (char *)buf;
   int i = 0;
   if(fd == 1 || fd == 2) {
