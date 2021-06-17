@@ -64,7 +64,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
   if(CROSS_PAGE(addr, len)) {
 	union {
 		uint8_t bytes[4];
-		uint8_t dword;
+		uint32_t dword;
 	} data = {0};
 	for(int i = 0; i < len; i++) {
 		paddr = page_translate(addr + i, false);
@@ -74,7 +74,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
   }
   else {
 	paddr = page_translate(addr, false);
-	return paddr_read(addr, len);
+	return paddr_read(paddr, len);
   }
 }
 
@@ -91,6 +91,6 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
   }
   else {
 	paddr = page_translate(addr, true);
-	paddr_write(addr, len, data);
+	paddr_write(paddr, len, data);
   }
 }
